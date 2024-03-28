@@ -46,7 +46,7 @@ process.shape = function(outputfolder){
          return(df)
       }
       
-      df.shape <- as.data.frame(matrix(nrow = length(li.apple), ncol = 11))
+      df.shape <- as.data.frame(matrix(nrow = length(li.apple), ncol = 15))
       df.shape2 <- as.data.frame(matrix(nrow = 0, ncol = 5))
       df.shape3 <- as.data.frame(matrix(nrow = 0, ncol = 5))
       vbadge2 <- vapplenr2 <- vtrait2 <- vdate2 <- vector()
@@ -62,7 +62,7 @@ process.shape = function(outputfolder){
          df.shape[i,1] <- badge
          df.shape[i,2] <- nr
          df.shape[i,3] <- date
-         for (j in 2:10) {
+         for (j in 2:14) {
             if (ncol(li.apple[[i]][[j]]) == 1) {
                df.shape[i,j + 1] <- li.apple[[i]][[j]][1,1]
             } else {
@@ -95,13 +95,13 @@ process.shape = function(outputfolder){
       row.names(df.shape3) <- c(1:nrow(df.shape3))
       
       # Add colnames to df.shape
-      for (c in 1:10) {
+      for (c in 1:14) {
          colnames(df.shape)[c + 1] <- names(li.apple[[1]][[c]][1])
       }
       
       colnames(df.shape)[1:3] <- c("badge", "appleNR", "date")
       # Remove NA columns
-      df.shape %>% select(-width_cm, -height_cm, -symmetry, -symmetry_angle_deg) -> df.shape
+      df.shape %>% select(-width_cm, -height_cm, -symmetry, -symmetry_angle_deg, -contains("radius")) -> df.shape
       
       # First round add colnames to final dfs
       if (f == files[1]) {

@@ -12,7 +12,7 @@
 # ---------------------------------------------------------------------------- #
 
 # Path with matlab output
-path.analysis_nk <- "~/phenobox/analysis_nk/"
+path.affe_output <- "~/phenobox/affe_output/"
 # File with field plan and required colnames
 exp.file <- "~/phenobox/pseudoplan.txt"
 delimiter <- "\t"
@@ -56,7 +56,7 @@ library(magick)
 library(rstudioapi)
 
 # Set working directory
-setwd(path.analysis_nk)
+setwd(path.affe_output)
 
 # Get path of this Rscript (only works in RStudio)
 rpath <- dirname(rstudioapi::getSourceEditorContext()$path)
@@ -92,7 +92,7 @@ field.info <- field.info[field.info$badge %in% dir,]
 # If not done before, process original text files first
 if (!proc.shape) {
   source(paste0(rpath, "/process.shape.phenobox.R"))
-  process.shape(path.analysis_nk)
+  process.shape(path.affe_output)
 }
 
 # Read in traits (produced by process.shape.phenobox.R)
